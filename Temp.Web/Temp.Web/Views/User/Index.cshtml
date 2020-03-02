@@ -1,0 +1,65 @@
+﻿@using Temp.Common.Infrastructure
+@model IEnumerable<UserViewModel>
+@{
+    ViewBag.Title = "User";
+    Layout = "_AdminLayout";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2 container-fluid">
+            <a asp-action="" class="btn btn-success">Create User</a>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="container-fluid">
+                <table class="table table-bordered table-hover" id="user" style="text-align:center">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>User name</th>
+                        <th>Create date</th>
+                        <th>Expired date</th>
+                        <th>Role</th>
+                        <th>Request</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Username</td>
+                            <td>@item.CreateDate</td>
+                            <td>@item.ExpiredDate</td>
+                            <td>@item.Role.Name</td>
+                            <td>
+                            @if (@item.Type == (int) UserType.Processing)
+                            {
+                                <a class="btn btn-success"  asp-action="ApproveRequest" asp-route-id="@item.Id">Approve</a>
+                                <a class="btn btn-danger"  asp-action="RejectRequest" asp-route-id="@item.Id">Reject</a>
+                            }
+                             </td>
+                            <td>
+                                <a asp-action="" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                                <a asp-action="delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('Are you sure to delete this record?')">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready( function () {
+            $('#user').DataTable();
+
+        } );
+    </script>
+}

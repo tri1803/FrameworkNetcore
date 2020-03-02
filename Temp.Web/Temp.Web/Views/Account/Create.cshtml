@@ -1,0 +1,56 @@
+﻿@model CreateAccViewModel
+@{
+  ViewBag.Title = "Register";
+  Layout = "_LayoutLogin";
+}
+
+<div class="login-box">
+  <div class="login-logo">
+    <a href=""><b>@CommonResource.SignUp</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">@CommonResource.Invalid</p>
+
+      <form asp-controller="Account" asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="@CommonResource.lblUserName" asp-for="Username">
+          <span asp-validation-for="Username" class="text-danger"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="@CommonResource.lblPassword" asp-for="Password">
+          <span asp-validation-for="Password" class="text-danger"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="@CommonResource.lblPasswordConfirm" asp-for="ConfirmPass">
+          <span asp-validation-for="ConfirmPass" class="text-danger"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">@CommonResource.SignUp</button>
+      </form>
+
+      
+      <!-- /.social-auth-links -->
+
+     
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->

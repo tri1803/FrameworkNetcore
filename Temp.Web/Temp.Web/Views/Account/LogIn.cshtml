@@ -1,0 +1,69 @@
+﻿@model LogInViewModel
+@{
+  ViewBag.Title = "Login";
+  Layout = "_LayoutLogin";
+}
+
+<div class="login-box">
+  <div class="login-logo">
+   <b>@CommonResource.Login</b>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">@CommonResource.Invalid</p>
+
+      <form asp-controller="Account" asp-action="LogIn" method="post" id="LoginValidation">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="@CommonResource.lblUserName" asp-for="Username">
+          <span asp-validation-for="Username" class="text-danger"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="@CommonResource.lblPassword" asp-for="Password">
+          <span asp-validation-for="Password" class="text-danger"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Ghi nhớ
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">@CommonResource.Login</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- Hoặc -</p>
+        <a asp-controller="Account" asp-action="Create" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i>@CommonResource.SignUp
+        </a>
+        <a asp-controller="Account" asp-action="ChangePass" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i>@CommonResource.ChangePass
+        </a>
+      </div>
+      <!-- /.social-auth-links -->
+
+     
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+
